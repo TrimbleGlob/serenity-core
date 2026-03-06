@@ -8,7 +8,7 @@ public class InteractionBuilder {
         this.title = title;
     }
 
-    public <T extends Interaction> AnonymousInteraction whereTheActorAttemptsTo(T... steps) {
+    public <T extends Performable> AnonymousInteraction whereTheActorAttemptsTo(T... steps) {
         return Interaction.where(title, steps);
     }
 }

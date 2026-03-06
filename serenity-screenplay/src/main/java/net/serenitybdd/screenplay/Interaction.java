@@ -32,12 +32,12 @@ public interface Interaction extends Performable {
         return Instrumented.instanceOf(AnonymousInteractionFunction.class).withProperties(title, performableOperation);
     }
 
-    static <T extends Performable> AnonymousPerformableRunnable thatPerforms(Runnable performableOperation) {
-        return Instrumented.instanceOf(AnonymousPerformableRunnable.class).withProperties(HumanReadableTaskName.forCurrentMethod(), performableOperation);
+    static <T extends Performable> AnonymousInteractionRunnable thatPerforms(Runnable performableOperation) {
+        return Instrumented.instanceOf(AnonymousInteractionRunnable.class).withProperties(HumanReadableTaskName.forCurrentMethod(), performableOperation);
     }
 
-    static <T extends Performable> AnonymousPerformableRunnable thatPerforms(String title, Runnable performableOperation) {
-        return Instrumented.instanceOf(AnonymousPerformableRunnable.class).withProperties(title, performableOperation);
+    static <T extends Performable> AnonymousInteractionRunnable thatPerforms(String title, Runnable performableOperation) {
+        return Instrumented.instanceOf(AnonymousInteractionRunnable.class).withProperties(title, performableOperation);
     }
 
 }

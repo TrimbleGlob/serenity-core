@@ -2,42 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.serenity-bdd</groupId>
+    <parent>
+        <groupId>net.serenity-bdd</groupId>
+        <artifactId>serenity-bdd</artifactId>
+        <version>5.3.7-SNAPSHOT</version>
+    </parent>
+
     <artifactId>serenity-bom</artifactId>
-    <version>5.3.7-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Serenity BDD BOM</name>
     <description>Bill of Materials (BOM) for Serenity BDD - import this to align all Serenity module versions</description>
-    <url>https://serenity-bdd.github.io/</url>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>john.smart</id>
-            <name>John Ferguson Smart</name>
-            <email>john.smart@wakaleo.com</email>
-        </developer>
-        <developer>
-            <id>cliviu</id>
-            <name>Liviu Carausu</name>
-            <email>liviu.carausu@gmail.com</email>
-        </developer>
-    </developers>
-
-    <scm>
-        <connection>scm:git:https://github.com/serenity-bdd/serenity-core.git</connection>
-        <developerConnection>scm:git:https://github.com/serenity-bdd/serenity-core.git</developerConnection>
-        <url>https://github.com/serenity-bdd/serenity-core</url>
-      <tag>HEAD</tag>
-  </scm>
 
     <dependencyManagement>
         <dependencies>

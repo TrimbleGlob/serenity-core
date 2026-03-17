@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.serenity-bdd</groupId>
+    <artifactId>serenity-bom</artifactId>
+    <version>5.3.6-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Serenity BDD BOM</name>
+    <description>Bill of Materials (BOM) for Serenity BDD - import this to align all Serenity module versions</description>
+    <url>https://serenity-bdd.github.io/</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>john.smart</id>
+            <name>John Ferguson Smart</name>
+            <email>john.smart@wakaleo.com</email>
+        </developer>
+        <developer>
+            <id>cliviu</id>
+            <name>Liviu Carausu</name>
+            <email>liviu.carausu@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/serenity-bdd/serenity-core.git</connection>
+        <developerConnection>scm:git:https://github.com/serenity-bdd/serenity-core.git</developerConnection>
+        <url>https://github.com/serenity-bdd/serenity-core</url>
+    </scm>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Core -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-report-resources</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-sample-alternative-resources</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Screenplay -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-screenplay</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-screenplay-webdriver</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-screenplay-rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-screenplay-playwright</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Test Runners -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-junit5</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-junit</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-cucumber</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Assertions -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-assertions</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-ensure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- REST -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-rest-assured</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Reporting -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-reports</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-reports-configuration</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-stats</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-single-page-report</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-json-summary-report</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-navigator-report</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Integrations -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-spring</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-playwright</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Cloud Providers -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-browserstack</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-saucelabs</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-lambdatest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-crossbrowsertesting</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-zalenium</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-selenoid</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-bitbar</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Tools -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-browsermob-plugin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-shutterbug</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-ant-task</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-cli</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- JIRA -->
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-jira-plugin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.serenity-bdd</groupId>
+                <artifactId>serenity-jira-requirements-provider</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Maven Plugin -->
+            <dependency>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

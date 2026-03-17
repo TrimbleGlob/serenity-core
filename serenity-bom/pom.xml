@@ -4,7 +4,7 @@
 
     <groupId>net.serenity-bdd</groupId>
     <artifactId>serenity-bom</artifactId>
-    <version>5.3.6</version>
+    <version>5.3.7-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Serenity BDD BOM</name>
@@ -36,7 +36,7 @@
         <connection>scm:git:https://github.com/serenity-bdd/serenity-core.git</connection>
         <developerConnection>scm:git:https://github.com/serenity-bdd/serenity-core.git</developerConnection>
         <url>https://github.com/serenity-bdd/serenity-core</url>
-      <tag>5.3.6</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <dependencyManagement>

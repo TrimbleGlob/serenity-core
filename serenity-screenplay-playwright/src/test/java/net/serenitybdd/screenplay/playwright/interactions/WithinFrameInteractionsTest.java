@@ -9,6 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -20,6 +23,11 @@ public class WithinFrameInteractionsTest {
 
     Actor alice;
 
+    private static String fileUrl(String filename) {
+        Path path = Paths.get("src/test/resources/files/" + filename).toAbsolutePath();
+        return "file://" + path;
+    }
+
     @BeforeEach
     void setup() {
         alice = Actor.named("Alice")
@@ -28,18 +36,17 @@ public class WithinFrameInteractionsTest {
 
     @Test
     void should_click_element_within_frame() {
-        // Navigate to a page with iframes
         alice.attemptsTo(
-            Open.url("https://the-internet.herokuapp.com/iframe"),
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .click("body#tinymce")
+            Open.url(fileUrl("iframe-test.html")),
+            WithinFrame.locatedBy("#editor-frame")
+                .click("body#editor")
         );
-        
+
         // Verify we can interact with frame content
         Target frameContent = Target.the("frame content")
-            .inFrame("#mce_0_ifr")
-            .locatedBy("body#tinymce");
-            
+            .inFrame("#editor-frame")
+            .locatedBy("body#editor");
+
         String text = alice.asksFor(Text.of(frameContent));
         assertThat(text).isNotEmpty();
     }
@@ -47,20 +54,20 @@ public class WithinFrameInteractionsTest {
     @Test
     void should_fill_input_within_frame() {
         alice.attemptsTo(
-            Open.url("https://the-internet.herokuapp.com/iframe"),
+            Open.url(fileUrl("iframe-test.html")),
             // Clear existing content first
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .clear("body#tinymce"),
+            WithinFrame.locatedBy("#editor-frame")
+                .clear("body#editor"),
             // Fill with new text
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .fill("body#tinymce", "Hello from Serenity!")
+            WithinFrame.locatedBy("#editor-frame")
+                .fill("body#editor", "Hello from Serenity!")
         );
 
         // Verify the text was entered
         Target frameContent = Target.the("frame content")
-            .inFrame("#mce_0_ifr")
-            .locatedBy("body#tinymce");
-            
+            .inFrame("#editor-frame")
+            .locatedBy("body#editor");
+
         String text = alice.asksFor(Text.of(frameContent));
         assertThat(text).contains("Hello from Serenity!");
     }
@@ -68,20 +75,20 @@ public class WithinFrameInteractionsTest {
     @Test
     void should_type_text_within_frame() {
         alice.attemptsTo(
-            Open.url("https://the-internet.herokuapp.com/iframe"),
+            Open.url(fileUrl("iframe-test.html")),
             // Clear existing content
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .clear("body#tinymce"),
+            WithinFrame.locatedBy("#editor-frame")
+                .clear("body#editor"),
             // Type text character by character
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .type("body#tinymce", "Typed text")
+            WithinFrame.locatedBy("#editor-frame")
+                .type("body#editor", "Typed text")
         );
 
         // Verify the text was typed
         Target frameContent = Target.the("frame content")
-            .inFrame("#mce_0_ifr")
-            .locatedBy("body#tinymce");
-            
+            .inFrame("#editor-frame")
+            .locatedBy("body#editor");
+
         String text = alice.asksFor(Text.of(frameContent));
         assertThat(text).contains("Typed text");
     }
@@ -89,20 +96,20 @@ public class WithinFrameInteractionsTest {
     @Test
     void should_perform_custom_actions_within_frame() {
         alice.attemptsTo(
-            Open.url("https://the-internet.herokuapp.com/iframe"),
-            WithinFrame.locatedBy("#mce_0_ifr")
+            Open.url(fileUrl("iframe-test.html")),
+            WithinFrame.locatedBy("#editor-frame")
                 .perform(frame -> {
                     // Custom actions using FrameLocator
-                    frame.locator("body#tinymce").clear();
-                    frame.locator("body#tinymce").fill("Custom action text");
+                    frame.locator("body#editor").clear();
+                    frame.locator("body#editor").fill("Custom action text");
                 })
         );
 
         // Verify the custom action worked
         Target frameContent = Target.the("frame content")
-            .inFrame("#mce_0_ifr")
-            .locatedBy("body#tinymce");
-            
+            .inFrame("#editor-frame")
+            .locatedBy("body#editor");
+
         String text = alice.asksFor(Text.of(frameContent));
         assertThat(text).contains("Custom action text");
     }
@@ -110,14 +117,14 @@ public class WithinFrameInteractionsTest {
     @Test
     void should_interact_with_nested_frames() {
         alice.attemptsTo(
-            Open.url("https://the-internet.herokuapp.com/nested_frames")
+            Open.url(fileUrl("nested-frames.html"))
         );
 
         // Read text from bottom frame
         Target bottomFrameContent = Target.the("bottom frame content")
             .inFrame("frame[name='frame-bottom']")
             .locatedBy("body");
-            
+
         String bottomText = alice.asksFor(Text.of(bottomFrameContent));
         assertThat(bottomText).containsIgnoringCase("bottom");
 
@@ -126,7 +133,7 @@ public class WithinFrameInteractionsTest {
             .inFrame("frame[name='frame-top']")
             .inFrame("frame[name='frame-left']")
             .locatedBy("body");
-            
+
         String leftText = alice.asksFor(Text.of(leftFrameContent));
         assertThat(leftText).containsIgnoringCase("left");
     }
@@ -134,26 +141,26 @@ public class WithinFrameInteractionsTest {
     @Test
     void should_handle_multiple_frame_interactions_in_sequence() {
         alice.attemptsTo(
-            Open.url("https://the-internet.herokuapp.com/iframe"),
+            Open.url(fileUrl("iframe-test.html")),
             // First interaction
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .clear("body#tinymce"),
-            // Second interaction  
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .fill("body#tinymce", "First entry"),
+            WithinFrame.locatedBy("#editor-frame")
+                .clear("body#editor"),
+            // Second interaction
+            WithinFrame.locatedBy("#editor-frame")
+                .fill("body#editor", "First entry"),
             // Third interaction
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .clear("body#tinymce"),
+            WithinFrame.locatedBy("#editor-frame")
+                .clear("body#editor"),
             // Fourth interaction
-            WithinFrame.locatedBy("#mce_0_ifr")
-                .fill("body#tinymce", "Second entry")
+            WithinFrame.locatedBy("#editor-frame")
+                .fill("body#editor", "Second entry")
         );
 
         // Verify final state
         Target frameContent = Target.the("frame content")
-            .inFrame("#mce_0_ifr")
-            .locatedBy("body#tinymce");
-            
+            .inFrame("#editor-frame")
+            .locatedBy("body#editor");
+
         String text = alice.asksFor(Text.of(frameContent));
         assertThat(text).contains("Second entry");
         assertThat(text).doesNotContain("First entry");
